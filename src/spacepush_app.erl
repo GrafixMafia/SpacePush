@@ -3,20 +3,24 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module('spacepush_app').
+-module(spacepush_app).
 
 -behaviour(application).
 
 %% Application callbacks
--export([start/2
+-export([start/0, start/2
         ,stop/1]).
 
 %%====================================================================
 %% API
 %%====================================================================
+start() ->
+    crypto:start(),
+    ssl:start(),
+    application:start(spacepush).
 
 start(_StartType, _StartArgs) ->
-    'spacepush_sup':start_link().
+    spacepush_sup:start_link().
 
 %%--------------------------------------------------------------------
 stop(_State) ->

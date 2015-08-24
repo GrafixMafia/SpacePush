@@ -1,16 +1,12 @@
-{application, 'spacepush',
- [{description, "An OTP application"},
+{application, spacepush,
+ [
+ {description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, {'spacepush_app', []}},
   {applications,
    [kernel,
     stdlib
    ]},
-  {env,[]},
-  {modules, []},
-
-  {contributors, []},
-  {licenses, []},
-  {links, []}
+  {mod, {spacepush_app, []}},
+  {env,[]}
  ]}.
