@@ -1,6 +1,8 @@
 -module(spacepush_serv).
 -behaviour(gen_server).
 
+-include ("spacepush.hrl").
+
 -define(SERVER, ?MODULE).
 
 %% ------------------------------------------------------------------
@@ -33,8 +35,9 @@ start_link() ->
 init(Args) ->
     {ok, Args}.
 handle_call({test, Msg}, _From, State) ->
-    io:format(Msg),
-    spacepush:send(Msg),
+    SPMsg = #spmessage{},
+    Config = #spconfig{},
+    spacepush:send_pn(Config, SPMsg),
     {reply, done, State};
 handle_call(_Request, _From, State) ->
     {reply, ok, State}.
